@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sage_learn/screens/auth_screen.dart';
+import 'package:sage_learn/utils/custom_page_route.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -41,7 +43,9 @@ class AboutScreen extends StatelessWidget {
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  // TODO: Navigate to course list
+                  Navigator.of(context).push(
+                    SlidePageRoute(page: const AuthScreen()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF8518FF),
