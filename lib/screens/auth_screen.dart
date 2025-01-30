@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -29,38 +30,35 @@ class _AuthScreenState extends State<AuthScreen> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 40),
-              Row(
-                children: [
-                  Image.asset(
-                    'assets/images/book_icon.png',
-                    height: 40,
-                    width: 40,
-                  ),
-                  const SizedBox(width: 12),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Learn Code',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF8518FF),
-                        ),
+              Center(
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/book_icon.png',
+                      height: 50,
+                      width: 50,
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'Learn Code',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF8518FF),
                       ),
-                      Text(
-                        'E-Learning platform',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
+                    ),
+                    const Text(
+                      'E-Learning platform',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 60),
               Row(
@@ -188,7 +186,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   _SocialButton(
-                    icon: 'assets/images/google_icon.png',
+                    icon: 'assets/images/google_icon.svg',
                     onPressed: () {
                       // TODO: Implement Google sign in
                     },
@@ -200,7 +198,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     },
                   ),
                   _SocialButton(
-                    icon: 'assets/images/phone_icon.png',
+                    icon: 'assets/images/phone_icon.svg',
                     onPressed: () {
                       // TODO: Show phone number dialog
                       _showPhoneNumberDialog(context);
@@ -289,11 +287,17 @@ class _SocialButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Center(
-          child: Image.asset(
-            icon,
-            height: 30,
-            width: 30,
-          ),
+          child: icon.endsWith('.svg')
+              ? SvgPicture.asset(
+                  icon,
+                  height: 24,
+                  width: 24,
+                )
+              : Image.asset(
+                  icon,
+                  height: 30,
+                  width: 30,
+                ),
         ),
       ),
     );
